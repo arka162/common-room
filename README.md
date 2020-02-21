@@ -1,1 +1,1 @@
-# angular-chat
+# private-chat
