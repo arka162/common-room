@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "private-chat",
+      "public": "dist/private-chat",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "chat-room-ae529": {
+      "hosting": {
+        "private-chat": [
+          "chat-room-ae529"
+        ]
+      }
+    }
+  }
+}

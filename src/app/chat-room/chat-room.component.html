@@ -1,0 +1,43 @@
+<div nz-row>
+	<div nz-col nzSpan="12" nzOffset="6">
+		<h3 [ngStyle]="{ margin: '16px 0' }">Small Size</h3>
+		<nz-list [nzDataSource]="chatData" nzBordered nzSize="small" [nzHeader]="chatHeader" [nzFooter]="chatFooter"
+			[nzRenderItem]="smallItem">
+			<ng-template #chatHeader>
+				<span>
+					Room: <strong>Room Name</strong>&nbsp;
+				</span>
+				<button nz-button nzType="primary" [nzLoading]="isJoiningRoom">
+					<i nz-icon nzType="poweroff"></i>Change Room
+				</button>
+			</ng-template>
+			<ng-template #smallItem let-item>
+				<nz-list-item>
+					<span class="ant-typography"><strong>{{item.name}}:&nbsp;</strong></span>
+					{{item.message}}
+				</nz-list-item>
+			</ng-template>
+			<ng-template #chatFooter>
+				<span>Users in room: 10</span>
+			</ng-template>
+		</nz-list>
+		<form nz-form [formGroup]="myForm" (ngSubmit)="submitForm()">
+			<nz-form-item [ngStyle]="{ margin: '16px 0' }">
+				<nz-form-label [nzSm]="6" nzFor="mention">Top coders</nz-form-label>
+				<nz-form-control [nzSm]="16" nzErrorTip="More than 10 cannot be selected!">
+					<nz-mention #mentions [nzSuggestions]="chatNames">
+						<input id="mention" placeholder="Shout here!" formControlName="mention" nzMentionTrigger
+							nz-input />
+					</nz-mention>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item nz-row style="margin-bottom: 8px;">
+				<nz-form-control [nzSpan]="14" [nzOffset]="6">
+					<button type="button" nz-button nzType="primary" (click)="submitForm()">Submit</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="button" nz-button (click)="resetForm()">Reset</button>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+	</div>
+</div>
