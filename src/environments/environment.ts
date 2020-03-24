@@ -5,14 +5,14 @@
 export const environment = {
 	production: false,
 	firebase: {
-		apiKey: 'AIzaSyDK1axLmLKP7hEGt5nIsg5usFRk0QaEEg0',
-		authDomain: 'chat-room-ae529.firebaseapp.com',
-		databaseURL: 'https://chat-room-ae529.firebaseio.com',
-		projectId: 'chat-room-ae529',
-		storageBucket: 'chat-room-ae529.appspot.com',
-		messagingSenderId: '276345806499',
-		appId: '1:276345806499:web:12270e7b2cd9995f47a916',
-		measurementId: 'G-0WK467X6F0'
+		apiKey: "AIzaSyAcinmaUSU3wFqQY1e3tjYJbKu2gMWdg74",
+		authDomain: "my-playground-37eef.firebaseapp.com",
+		databaseURL: "https://my-playground-37eef.firebaseio.com",
+		projectId: "my-playground-37eef",
+		storageBucket: "my-playground-37eef.appspot.com",
+		messagingSenderId: "302683644344",
+		appId: "1:302683644344:web:ae7b0dd13edee19c7d2f4d",
+		measurementId: "G-2FRE90DFTT"
 
 	}
 };
