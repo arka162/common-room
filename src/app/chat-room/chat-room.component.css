@@ -38,3 +38,9 @@ text-align: center;
 nz-footer {
 text-align: center;
 }
+
+.ant-list-items {
+    max-height: 60vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}

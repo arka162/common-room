@@ -18,6 +18,14 @@ export class HelperService {
 		this._message.create(type, message);
 	}
 
+	findUser(userName: string) {
+		return this.firestore.collection('common-room/users/members', ref => ref.where('name', '==', userName).limit(1)).valueChanges();
+	}
+
+	getUser(userID: string) {
+		return this.firestore.collection('common-room/users/members').doc(userID).get();
+	}
+
 	getUsers() {
 		return this.firestore.collection('common-room/users/members').valueChanges();
 	}
@@ -29,49 +37,64 @@ export class HelperService {
 	}
 
 	updateUser(user: User) {
-		delete user.id;
-		this.firestore.doc('common-room/users/members/' + user.id).update(user);
+		// delete user.id;
+		this.firestore.doc(`common-room/users/members/${user.id}`).update(user);
 	}
 
-	deleteUser(userId: string) {
-		this.firestore.doc('users/members/' + userId).delete();
+	deleteUser(userID: string) {
+		this.firestore.doc(`common-room/users/members/${userID}`).delete();
+	}
+
+	findRoom(roomName: string) {
+		return this.firestore.collection('common-room/rooms/public', ref => ref.where('name', '==', roomName).limit(1)).valueChanges();
+	}
+
+	getRoom(roomID: string) {
+		return this.firestore.collection('common-room/rooms/public').doc(roomID).get();
 	}
 
 	getRooms() {
-		return this.firestore.collection('common-room/rooms').valueChanges();
+		return this.firestore.collection('common-room/rooms/public').valueChanges();
 	}
 
 	createRoom(room: Room) {
-		return this.firestore.collection('common-room/rooms').add(room);
+		return this.firestore.collection('common-room/rooms/public').add(room).then(docRef => {
+			return docRef;
+		}).catch(error => console.error("Error adding document: ", error));
 	}
 
 	updateRoom(room: Room) {
-		delete room.id;
-		this.firestore.doc('common-room/rooms/' + room.id).update(room);
+		// delete room.id;
+		this.firestore.doc(`common-room/rooms/public/${room.id}`).update(room);
 	}
 
-	deleteRoom(roomId: string) {
-		this.firestore.doc('messages/' + roomId).delete();
+	deleteRoom(roomID: string) {
+		this.firestore.doc(`common-room/rooms/public/${roomID}`).delete();
 	}
 
-	getMessages() {
-		return this.firestore.collection('messages').valueChanges();
+	getMessages(roomID: string) {
+		return this.firestore.collection(`common-room/rooms/public/${roomID}/messages`, ref =>
+			ref.orderBy('created', 'asc')).valueChanges();
 	}
 
-	sendMessage(message: Message) {
-		return this.firestore.collection('messages').add(message);
+	sendMessage(message: Message, roomID: string) {
+		// let temp: any = message;
+		// message['created'] = this.timestamp;
+		return this.firestore.collection(`common-room/rooms/public/${roomID}/messages`).add(message).then(docRef => {
+			return docRef;
+		}).catch(error => console.error("Error adding document: ", error));
 	}
 
-	updateMessage(message: Message) {
-		delete message.id;
-		this.firestore.doc('messages/' + message.id).update(message);
+	updateMessage(message: Message, roomID: string) {
+		// delete message.id;
+		this.firestore.doc(`common-room/rooms/public/${roomID}/messages/${message.id}`).update(message);
 	}
 
-	deleteMessage(messageId: string) {
-		this.firestore.doc('messages/' + messageId).delete();
+	deleteMessage(messageID: string, roomID: string) {
+		this.firestore.doc(`common-room/rooms/public/${roomID}/messages/${messageID}`).delete();
 	}
 
-	generateId(idLength: number = 16, onlyNumbers: boolean = false) {
+	generateHash(idLength: number = 16, onlyNumbers: boolean = false) {
 		let identifier: string = '';
 		var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 		if (onlyNumbers) {

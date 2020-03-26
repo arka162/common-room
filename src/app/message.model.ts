@@ -4,4 +4,6 @@ export class Message {
     name: string;
     message: string;
     info: any;
+    created: any;
+    updated: any;
 }
