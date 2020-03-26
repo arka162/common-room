@@ -50,6 +50,7 @@
     "firebase-tools": "^7.12.1",
     "fuzzy": "^0.1.3",
     "inquirer": "^6.2.2",
-    "inquirer-autocomplete-prompt": "^1.0.1"
+    "inquirer-autocomplete-prompt": "^1.0.1",
+    "@babel/compat-data": "~7.8.0"
   }
 }
