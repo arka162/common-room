@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-build": "ng build --prod --base-href"
+    "gh-build": "ng build --prod --base-href=\"https://arka162.github.io/common-room\""
   },
   "private": true,
   "dependencies": {
